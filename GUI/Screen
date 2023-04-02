@@ -1,0 +1,166 @@
+package GUI;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+
+public class Screen extends JFrame implements ActionListener, MouseListener, FocusListener
+{
+
+    JPanel panel1;
+    JButton button1;
+    JButton button2;
+    JButton button3;
+    JTextField textField1;
+    JTextField textField2;
+    JTextField textField3;
+    
+	ArrayList testlist = new ArrayList();
+    
+    JTextArea textarea1;
+    
+    String s,f,c;
+
+
+    String search;
+
+    public Screen(String title)
+    {
+        JFrame frame1 = new JFrame(title);
+        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame1.setSize(1000,600);
+        frame1.setLocationRelativeTo(null);
+
+        panel1 = new JPanel();
+        frame1.add(panel1);
+        panel1.setBackground(Color.WHITE);
+
+        textField1 = new JTextField();
+        panel1.add(textField1);
+        textField1.addFocusListener(this);
+        textField1.setColumns(10);
+        
+        textField2 = new JTextField();
+        panel1.add(textField2);
+        textField2.addFocusListener(this);
+        textField2.setColumns(10);
+        
+        textField3 = new JTextField();
+        panel1.add(textField3);
+        textField3.addFocusListener(this);
+        textField3.setColumns(10);
+        
+
+        button1 = new JButton("Save");
+        panel1.add(button1);
+        //button1.setBackground(Color.green);
+        button1.addActionListener(this);
+        button1.setToolTipText("Save the person as an element");
+
+        button2 = new JButton("Show all");
+        panel1.add(button2);
+        //button2.setBackground(Color.blue);
+        button2.addActionListener(this);
+        button2.setToolTipText("Show all the list.");
+
+        button3 = new JButton("Delete");
+        panel1.add(button3);
+        //button1.setBackground(Color.green);
+        button3.addActionListener(this);
+        button3.setToolTipText("SDelete the element lists.");
+        
+        textarea1 = new JTextArea("",10,40);
+        textarea1.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        textarea1.setLineWrap(true);
+        panel1.add(textarea1);
+
+        frame1.setVisible(true);
+
+    }
+
+
+	@Override
+    public void actionPerformed(ActionEvent e)
+    {
+					
+        if (e.getSource()==button1) 
+        {       	
+			Person testperson = new Person(f,s,c);
+
+			testlist.add(testperson);
+
+            JOptionPane.showMessageDialog(this, "Just added. " +testperson);
+        }
+        
+        if (e.getSource()==button2) 
+        {
+        	
+        	for (int i = 0; i < testlist.size(); i++)
+    		{
+	        	textarea1.append(""+testlist.get(i)+"\n");
+
+    		}
+        }
+        
+
+        if (e.getSource()==button3) 
+        {
+        	
+        	testlist.removeAll(testlist);
+        	
+        	textarea1.setText(null);
+        }
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e)
+    {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+
+    }
+
+    @Override
+    public void focusLost(FocusEvent e)
+    {
+    	 if (e.getSource() == textField1)
+         {
+             f = textField1.getText();
+         }
+         if (e.getSource() == textField2)
+         {
+             s = textField2.getText();
+         }
+         if (e.getSource() == textField3)
+         {
+             c = textField3.getText();
+         }
+    }
+}
+
+
