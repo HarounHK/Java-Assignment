@@ -1,4 +1,4 @@
-package GUI;
+package com.assignment.test;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -11,46 +11,56 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
-public class Screen2 extends JFrame implements FocusListener, KeyListener, MouseListener
+public class Screen2 extends JFrame implements MouseListener 
 {
-	private JFrame frame2;
-	private TextArea textarea2; 
+	//declaring variables
+	private JFrame resultsFrame;
+	private TextArea resultsText; 
+	private JButton exitButton;
 
-	public Screen2(String textfromarea1)
+	public Screen2(String tempString) //
 	{
-
-		frame2 = new JFrame("Result");
-	    frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	    frame2.setSize(1000,600);
-	    frame2.setLocationRelativeTo(null);
+		//creating and customising results frame
+		resultsFrame = new JFrame("Result");
+		resultsFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		resultsFrame.setSize(1000,600);
+		resultsFrame.setLocationRelativeTo(null);
         
-        textarea2 = new TextArea("",10,40);
-        frame2.add(textarea2);
+		//creating and customising results text
+		resultsText = new TextArea("",10,40);
+        resultsFrame.add(resultsText);
+        resultsText.setBounds(300, 300, 500, 200);
+        
+        resultsText.setFont(new Font("Consolas", Font.PLAIN, 14));
+        resultsText.setBackground(Color.white);
+        resultsText.setForeground(Color.black);
+                
+        resultsText.setText(tempString);//setting the temp string as the text for the results textarea
         
         
-        textarea2.setBounds(300, 300, 500, 200);
-        textarea2.addFocusListener(this);
-        textarea2.addKeyListener(this);
-        textarea2.addMouseListener(this);
+        //creating and customising the main submit button
+        exitButton = new JButton("Submit");
+        exitButton.setBounds(100, 100, 80, 39);
+        //exitButton.add(exitButton);
+        exitButton.setBorder(BorderFactory.createLineBorder(Color.black, 2));
+        exitButton.setBackground(new Color(255,255,255));
+        exitButton.setForeground(Color.black);
+        exitButton.addMouseListener(this);
+        //exitButton.addActionListener(e -> System.exit(ABORT));
+        exitButton.setToolTipText("Click this to search");
         
-        textarea2.setFont(new Font("Consolas", Font.PLAIN, 14));
-        textarea2.setBackground(Color.white);
-        textarea2.setForeground(Color.black);
-        
-        textarea2.setText(textfromarea1);
-        
-        frame2.setVisible(true);
-
-		
-	}
+        resultsFrame.setVisible(true);
 	
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) 
 	{
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -77,36 +87,5 @@ public class Screen2 extends JFrame implements FocusListener, KeyListener, Mouse
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void focusGained(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-		
-
+	
 }
